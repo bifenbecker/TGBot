@@ -1,5 +1,10 @@
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 
+from ApiBot import get_text_addons
+
+
+text_addons = get_text_addons()
+
 
 class State:
     """
@@ -14,7 +19,7 @@ class State:
 
     def reset_buttons(self):
         self.buttons = ReplyKeyboardMarkup().add(
-            KeyboardButton('Назад')
+            KeyboardButton(text_addons['return_Button'])
         )
 
     @staticmethod
@@ -44,7 +49,8 @@ class State:
         Возвращает назад
         :return:
         """
-        self.bot.set_state(MainState)
+        if self.bot.prev_state:
+            self.bot.set_state(self.bot.prev_state)
 
 
 
@@ -60,10 +66,10 @@ class MainState(State):
 
     def on_text_handler(self, message):
         tasks = KeyboardButton(TasksState.NAME)
-        stat = KeyboardButton('Статистики')
-        set_task = KeyboardButton('Поставить')
-        idea = KeyboardButton('Идея')
-        data_base_knowledge = KeyboardButton('База знаний')
+        stat = KeyboardButton(StatisticState.NAME)
+        set_task = KeyboardButton(SetState.NAME)
+        idea = KeyboardButton(IdeaState.NAME)
+        data_base_knowledge = KeyboardButton(DataBaseKnowledgeState.NAME)
         contacts = KeyboardButton(ContactsState.NAME)
         self.buttons.add(tasks,stat,set_task, idea, data_base_knowledge, contacts, row_width=2)
         self.bot.send_message(message.chat.id, self.NAME, reply_markup=self.buttons)
@@ -103,3 +109,35 @@ class ContactsState(State):
         self.buttons.add(contact1, contact2, row_width=2)
         self.bot.send_message(message.chat.id, self.NAME, reply_markup=self.buttons)
         self.reset_buttons()
+
+
+class StatisticState(State):
+    """
+    Состояние Статистики
+    """
+
+    NAME = text_addons['statistic_Button']
+
+
+class SetState(State):
+    """
+    Состояние Поставить
+    """
+
+    NAME = text_addons['set_task_Button']
+
+
+class IdeaState(State):
+    """
+    Состояние Идея
+    """
+
+    NAME = text_addons['idea_Button']
+
+
+class DataBaseKnowledgeState(State):
+    """
+    Состояние База знаний
+    """
+
+    NAME = text_addons['database_knowledge_Button']

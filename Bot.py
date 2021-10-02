@@ -5,10 +5,14 @@ api_bot = get_api_bot()
 class Bot:
 
     def __init__(self, state=None):
+        self.prev_state = None
+        self.state = None
         self.set_state(state)
+
 
     def set_state(self, new_state_cls):
         if new_state_cls:
+            self.prev_state = self.state
             new_state = new_state_cls(self)
             self.state = new_state  # Брать из базы у юзера
 
