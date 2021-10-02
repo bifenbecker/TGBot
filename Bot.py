@@ -1,4 +1,5 @@
 from ApiBot import get_api_bot
+from States.State import State
 
 api_bot = get_api_bot()
 
@@ -14,7 +15,7 @@ class Bot:
         if new_state_cls:
             self.prev_state = self.state
             new_state = new_state_cls(self)
-            self.state = new_state  # Брать из базы у юзера
+            self.state = new_state
 
     def send_message(self, chat_id, text, **kwargs):
         api_bot.send_message(chat_id, text, **kwargs)

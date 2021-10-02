@@ -14,9 +14,11 @@ bot = None
 
 @api_bot.message_handler(content_types=['text'])
 def on_text_handler(message):
+    print(message)
     if message.text == text_addons['return_Button']:
         bot.state.return_back()
     else:
+        user = BotUser.objects.get(user_id=message)
         bot.set_state(State.get_cls(message.text))
 
     bot.on_text_handler(message)
