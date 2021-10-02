@@ -1,7 +1,9 @@
 from ApiBot import get_api_bot
 from States.State import State
+from States.MainState import MainState
 
 api_bot = get_api_bot()
+
 
 class Bot:
 
@@ -24,3 +26,9 @@ class Bot:
         if self.state:
             self.state.on_text_handler(message)
 
+
+bot = Bot(MainState)
+
+
+def get_bot():
+    return bot
