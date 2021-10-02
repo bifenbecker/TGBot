@@ -1,0 +1,12 @@
+{
+  "return_Button": "Назад",
+  "statistic_Button": "Статистики",
+  "set_task_Button": "Поставить",
+  "idea_Button": "Идея",
+  "database_knowledge_Button": "База знаний",
+  "contacts_Button": "Контакты",
+  "my_tasks_Button": "Мои задачи",
+  "i_set_Button": "Я поставил",
+  "today_tasks_Button": "На сегодня",
+  "tomorrow_tasks_Button": "На завтра"
+}
