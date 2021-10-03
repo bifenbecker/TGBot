@@ -19,16 +19,28 @@ class MainState(State):
 
     NAME = 'Главная'
 
-    def entry(self):
-        pass
+    def __init__(self, *args, **kwargs):
+        self.keyboard = State.create_tg_keyboard(
+            [
+                [TasksState.NAME, StatisticState.NAME],
+                [SetState.NAME, IdeaState.NAME],
+                [DataBaseKnowledgeState.NAME, ContactsState.NAME]
+            ]
+        )
+        super(MainState, self).__init__(*args, **kwargs)
+
+    def entry(self, user_id):
+        self.bot.send_message(user_id, self.NAME + "\nДля создание проекта введите '/newproject'", reply_markup=self.keyboard)
+
 
     def on_text_handler(self, message):
-        tasks = KeyboardButton(TasksState.NAME)
-        stat = KeyboardButton(StatisticState.NAME)
-        set_task = KeyboardButton(SetState.NAME)
-        idea = KeyboardButton(IdeaState.NAME)
-        data_base_knowledge = KeyboardButton(DataBaseKnowledgeState.NAME)
-        contacts = KeyboardButton(ContactsState.NAME)
-        self.buttons.add(tasks,stat,set_task, idea, data_base_knowledge, contacts, row_width=2)
-        self.bot.send_message(message.chat.id, self.NAME, reply_markup=self.buttons)
-        self.reset_buttons()
+        try:
+            self.bot.set_state(State.get_cls(message.text), message.chat.id)
+        except IndexError as e:
+            print(str(e))
+        # except Exception as e:
+        #     print(str(e))
+
+        # self.bot.send_message(message.chat.id, self.NAME, reply_markup=self.keyboard)
+
+

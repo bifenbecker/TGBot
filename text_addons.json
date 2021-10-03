@@ -1,12 +1,15 @@
 {
-  "return_Button": "Назад",
-  "statistic_Button": "Статистики",
-  "set_task_Button": "Поставить",
-  "idea_Button": "Идея",
-  "database_knowledge_Button": "База знаний",
-  "contacts_Button": "Контакты",
-  "my_tasks_Button": "Мои задачи",
-  "i_set_Button": "Я поставил",
-  "today_tasks_Button": "На сегодня",
-  "tomorrow_tasks_Button": "На завтра"
+  "return_Button": "↩Вернуться назад",
+  "tasks_Button": "\uD83D\uDDD3Задачи",
+  "statistic_Button": "\uD83E\uDDEEСтатистики",
+  "set_task_Button": "▶Поставить",
+  "idea_Button": "\uD83D\uDCA1Идея",
+  "database_knowledge_Button": "\uD83D\uDC68\u200D\uD83C\uDF93База знаний",
+  "contacts_Button": "\uD83D\uDC64Контакты",
+  "my_tasks_Button": "⬇Мои задачи",
+  "i_set_Button": "⬆Я поставил",
+  "today_tasks_Button": "\uD83D\uDCC5На сегодня",
+  "tomorrow_tasks_Button": "\uD83D\uDD53На завтра",
+  "idea_bank_Button": "\uD83D\uDDC4Банк идей",
+  "in_develop_Button": "В разработке"
 }

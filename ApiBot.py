@@ -7,8 +7,6 @@ api_bot = telebot.TeleBot(token=settings.BOT_TOKEN)
 
 
 
-
-
 def get_api_bot():
     return api_bot
 

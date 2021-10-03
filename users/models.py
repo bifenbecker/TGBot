@@ -13,6 +13,7 @@ class BotUser(models.Model):
     last_name = models.CharField(max_length=64, blank=True, null=True, verbose_name="Фамилия")
     username = models.CharField(max_length=32, blank=True, null=True, verbose_name="Никнейм")
     state = models.CharField(max_length=32, blank=True, null=True, verbose_name="Статус чата")
+    prev_state = models.CharField(max_length=32, blank=True, null=True, verbose_name="Предыдущий статус чата")
     last_active_date = models.DateTimeField(auto_now=True, verbose_name="Последняя активность")
     created_date = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
