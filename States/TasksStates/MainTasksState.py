@@ -27,10 +27,7 @@ class TasksState(State):
             [ForTodayTasksState.NAME, ForTomorrowTasksState.NAME],
             [IdeaBankState.NAME, InDevelopTasksState.NAME]
         ])
-
-    def entry(self, user_id):
-        self.bot.send_message(user_id, self.NAME + "(entry)",
-                              reply_markup=self.keyboard)
+        self.entry_message = self.NAME + "(entry)"
 
     def on_text_handler(self, message):
         self.bot.send_message(message.chat.id, self.NAME + "(хендлер)", reply_markup=self.keyboard)

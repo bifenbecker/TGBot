@@ -5,7 +5,7 @@ from ApiBot import get_text_addons
 from States.State import State
 from States.TasksStates.MainTasksState import TasksState
 from States.StatisticStates.MainStatisticState import StatisticState
-from States.SetTasksStates.MainSetTasksState import SetState
+from States.SetTasksStates.MainSetTasksState import SetTasksState
 from States.IdeaStates.MainIdeaState import IdeaState
 from States.DataBaseKnowledgeStates.MainDataBaseKnowledgeState import DataBaseKnowledgeState
 from States.ContactsStates.MainContactsState import ContactsState
@@ -23,21 +23,20 @@ class MainState(State):
         self.keyboard = State.create_tg_keyboard(
             [
                 [TasksState.NAME, StatisticState.NAME],
-                [SetState.NAME, IdeaState.NAME],
+                [SetTasksState.NAME, IdeaState.NAME],
                 [DataBaseKnowledgeState.NAME, ContactsState.NAME]
             ]
         )
         super(MainState, self).__init__(*args, **kwargs)
-
-    def entry(self, user_id):
-        self.bot.send_message(user_id, self.NAME + "\nДля создание проекта введите '/newproject'", reply_markup=self.keyboard)
+        self.entry_message = self.NAME + "\nДля создание проекта введите '/newproject'"
 
 
     def on_text_handler(self, message):
-        try:
-            self.bot.set_state(State.get_cls(message.text), message.chat.id)
-        except IndexError as e:
-            print(str(e))
+        pass
+        # try:
+        #     self.bot.set_state(State.get_cls(message.text), message.chat.id)
+        # except IndexError as e:
+        #     print(str(e))
         # except Exception as e:
         #     print(str(e))
 

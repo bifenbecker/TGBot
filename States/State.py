@@ -7,6 +7,28 @@ from users.models import BotUser
 text_addons = get_text_addons()
 
 
+def get_all_child_classes(main_cls):
+    def is_subclasses(cls_list):
+        for cls in cls_list:
+            if cls.__subclasses__():
+                return True
+        return False
+
+    child_list = main_cls.__subclasses__()
+    index = 0
+    while is_subclasses(child_list):
+        cls = child_list[index]
+        if cls.__subclasses__():
+            del child_list[index]
+            new_list = cls.__subclasses__()
+            for new_cls in new_list:
+                child_list.append(new_cls)
+
+        index += 1
+
+    return child_list
+
+
 class State:
     """
     Базовое состояние чат бота
@@ -16,6 +38,8 @@ class State:
 
     def __init__(self, bot):
         self.bot = bot
+        self.entry_message = ''
+        self.state_data = ''
 
     def reset_keyboard(self):
         self.keyboard = State.create_tg_keyboard([
@@ -24,7 +48,8 @@ class State:
 
     @staticmethod
     def get_cls(name):
-        for cls in State.__subclasses__():
+        cls_list = get_all_child_classes(State)
+        for cls in cls_list:
             if cls.NAME == name:
                 return cls
 
@@ -45,15 +70,12 @@ class State:
                 keyboard.row(*text)
         return keyboard
 
-    def entry(self, user_id):
+    def entry(self, message):
         """
         Отправка основного сообщения
         :return:
         """
-        self.keyboard = State.create_tg_keyboard([
-            [text_addons['return_Button']]
-        ])
-        self.bot.send_message(user_id, self.NAME, reply_markup=self.keyboard)
+        self.bot.send_message(message.from_user.id, self.entry_message, reply_markup=self.keyboard)
 
     def on_text_handler(self, message):
         """
@@ -62,3 +84,4 @@ class State:
         :return:
         """
         raise NotImplemented()
+

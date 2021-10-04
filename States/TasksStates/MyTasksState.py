@@ -22,3 +22,5 @@ class MyTasksState(State):
             ['Все отмененные задачи'],
             ['Задачи в Банке идей']
         ])
+
+        self.entry_message = self.NAME

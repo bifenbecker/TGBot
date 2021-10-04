@@ -19,9 +19,8 @@ class CreateProjectState(State):
     def __init__(self, *args, **kwargs):
         super(CreateProjectState, self).__init__(*args, **kwargs)
         self.reset_keyboard()
+        self.entry_message = "Введите название проекта"
 
-    def entry(self, user_id):
-        self.bot.send_message(user_id, "Введите название проекта", reply_markup=self.keyboard)
 
     def on_text_handler(self, message):
         user = BotUser.objects.filter(user_id=message.from_user.id).first()

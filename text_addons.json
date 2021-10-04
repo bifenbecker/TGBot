@@ -11,5 +11,8 @@
   "today_tasks_Button": "\uD83D\uDCC5На сегодня",
   "tomorrow_tasks_Button": "\uD83D\uDD53На завтра",
   "idea_bank_Button": "\uD83D\uDDC4Банк идей",
-  "in_develop_Button": "В разработке"
+  "in_develop_Button": "В разработке",
+  "voice_to_manager_Button": "\uD83D\uDDE3Голосом координатору",
+  "create_task_Button": "\uD83D\uDD04Создать задачу",
+  "members_of_project_Button": "\uD83D\uDC64Участники проекта"
 }
